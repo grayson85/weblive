@@ -21,7 +21,7 @@
         }
 
         video {
-            width: 80%;
+            width: 100%;
             max-width: 100%;
             height: auto;
         }
@@ -30,19 +30,28 @@
             font-size: 16px;
             margin-top: 10px;
         }
+
+        #no-live-stream-msg {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div id="video-container"></div>
+    <div id="no-live-stream-msg">No live stream events available.</div>
+	<div id="no-live-stream-msg">暂时没有直播节目.</div>
 
     <script>
         // Fetch JSON data with custom headers
         fetch('http://localhost:8000/tv.json', {
             method: 'GET',
             headers: {
-                'Origin': 'https://player.abc.com',
-                'Referer': 'https://player.abc.com/'
+                'Origin': 'https://player.test.com',
+                'Referer': 'https://player.test.com/'
             }
         })
             .then(response => response.json())
@@ -50,15 +59,25 @@
                 // Specify the titles you want to include
                 const includedTitles = ['英超', 'NBA'];
 
+                // Track if any videos are created
+                let videosCreated = false;
+
                 // Iterate through data and create video elements for included titles
                 data.data.forEach(category => {
                     if (includedTitles.includes(category.title)) {
                         category.sub.forEach(video => {
                             // Create video element only if the URL is valid
-                            checkVideoUrl(video.title, video.url);
+                            if (checkVideoUrl(video.title, video.url)) {
+                                videosCreated = true;
+                            }
                         });
                     }
                 });
+
+                // Display "No live stream events" message if no videos are created
+                if (!videosCreated) {
+                    document.getElementById('no-live-stream-msg').style.display = 'block';
+                }
             })
             .catch(error => console.error('Error fetching JSON:', error));
 
@@ -96,6 +115,9 @@
             }
 
             console.log('Video element created:', title, url);
+
+            // Return true indicating that a video was created
+            return true;
         }
 
         // Function to check if the video URL is valid
@@ -104,13 +126,15 @@
                 .then(response => {
                     if (response.ok) {
                         // If the response is successful, create the video element
-                        createVideoElement(title, url);
+                        return createVideoElement(title, url);
                     } else {
                         console.error('Error loading video:', title, url, 'Status:', response.status);
+                        return false;
                     }
                 })
                 .catch(error => {
                     console.error('Error loading video:', title, url, 'Error:', error);
+                    return false;
                 });
         }
     </script>
