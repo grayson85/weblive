@@ -1,0 +1,94 @@
+{
+    "data": [
+        {
+            "title": "英超",
+            "sub": [
+                {
+                    "title": "卢顿vs伯恩茅斯",
+                    "url": "https://testing.test.com/live/hd-zh-6ypq3nh79o0vmd7.m3u8"
+                },
+                {
+                    "title": "卢顿vs伯恩茅斯",
+                    "url": "https://testing.test.com/live/hd-en-6ypq3nh79o0vmd7.m3u8"
+                },
+                {
+                    "title": "卢顿vs伯恩茅斯",
+                    "url": "https://testing.test.com/live/sd-6ypq3nh79o0vmd7.m3u8"
+                }
+            ]
+        },
+        {
+            "title": "NBA",
+            "sub": [
+                {
+                    "title": "黄蜂vs活塞",
+                    "url": "https://testing.test.com/live/86134354178215095294.m3u8"
+                },
+                {
+                    "title": "黄蜂vs活塞",
+                    "url": "https://testing.test.com/live/hd-zh-n54ql7tpd92yrvy.m3u8"
+                },
+                {
+                    "title": "黄蜂vs活塞",
+                    "url": "https://testing.test.com/live/hd-en-n54ql7tpd92yrvy.m3u8"
+                },
+                {
+                    "title": "太阳vs骑士",
+                    "url": "https://testing.test.com/live/86134681133458412427.m3u8"
+                },
+                {
+                    "title": "太阳vs骑士",
+                    "url": "https://testing.test.com/live/hd-zh-y0or5gtz1jlwqwz.m3u8"
+                },
+                {
+                    "title": "太阳vs骑士",
+                    "url": "https://testing.test.com/live/hd-en-y0or5gtz1jlwqwz.m3u8"
+                },
+                {
+                    "title": "独行侠vs公牛",
+                    "url": "https://testing.test.com/live/86151476716986972140.m3u8"
+                },
+                {
+                    "title": "独行侠vs公牛",
+                    "url": "https://testing.test.com/live/86196120650299653574.m3u8"
+                },
+                {
+                    "title": "独行侠vs公牛",
+                    "url": "https://testing.test.com/live/hd-zh-6ypq3kt71g07md7.m3u8"
+                },
+                {
+                    "title": "独行侠vs公牛",
+                    "url": "https://testing.test.com/live/hd-en-6ypq3kt71g07md7.m3u8"
+                },
+                {
+                    "title": "勇士vs马刺",
+                    "url": "https://testing.test.com/live/86198083077918649556.m3u8"
+                },
+                {
+                    "title": "勇士vs马刺",
+                    "url": "https://testing.test.com/live/hd-zh-vjxm8xt5x94kq6o.m3u8"
+                },
+                {
+                    "title": "勇士vs马刺",
+                    "url": "https://testing.test.com/live/hd-en-vjxm8xt5x94kq6o.m3u8"
+                },
+                {
+                    "title": "猛龙vs掘金",
+                    "url": "https://testing.test.com/live/86151610500995751981.m3u8"
+                },
+                {
+                    "title": "猛龙vs掘金",
+                    "url": "https://testing.test.com/live/hd-zh-x7lm73t3pnkvr2w.m3u8"
+                },
+                {
+                    "title": "猛龙vs掘金",
+                    "url": "https://testing.test.com/live/hd-en-x7lm73t3pnkvr2w.m3u8"
+                },
+                {
+                    "title": "凯尔特人vs开拓者",
+                    "url": "https://testing.test.com/live/86151655854538775112.m3u8"
+                }
+            ]
+        }
+    ]
+}
