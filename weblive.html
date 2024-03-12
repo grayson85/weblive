@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Playlist</title>
+    <!-- Include hls.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Include mobile-friendly CSS (you may customize this based on your design) -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        #video-container {
+            max-width: 100%;
+            margin: 20px;
+        }
+
+        video {
+            width: 80%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container"></div>
+
+    <script>
+        // Fetch JSON data with custom headers
+        fetch('http://localhost:8000/tv.json', {
+            method: 'GET',
+            headers: {
+                'Origin': 'https://player.huminbird.cn',
+                'Referer': 'https://player.huminbird.cn/'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Specify the titles you want to include
+                const includedTitles = ['英超', 'NBA'];
+
+                // Iterate through data and create video elements for included titles
+                data.data.forEach(category => {
+                    if (includedTitles.includes(category.title)) {
+                        category.sub.forEach(video => {
+                            // Create video element only if the URL is valid
+                            checkVideoUrl(video.title, video.url);
+                        });
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+
+        // Function to create video elements
+        function createVideoElement(title, url) {
+            // Create a new video element
+            const video = document.createElement('video');
+            video.controls = true;
+
+            // Create a source element with the video URL
+            const source = document.createElement('source');
+            source.src = url;
+            source.type = 'application/x-mpegURL'; // Use the appropriate MIME type for your video
+
+            // Append source element to the video
+            video.appendChild(source);
+
+            // Create a heading for the video title
+            const heading = document.createElement('h3');
+            heading.textContent = title;
+
+            // Append the heading and video to the container
+            const container = document.getElementById('video-container');
+            container.appendChild(heading);
+            container.appendChild(video);
+
+            // Check if the browser supports hls.js
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(video);
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // For Safari
+                video.src = url;
+            }
+
+            console.log('Video element created:', title, url);
+        }
+
+        // Function to check if the video URL is valid
+        function checkVideoUrl(title, url) {
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        // If the response is successful, create the video element
+                        createVideoElement(title, url);
+                    } else {
+                        console.error('Error loading video:', title, url, 'Status:', response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading video:', title, url, 'Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
